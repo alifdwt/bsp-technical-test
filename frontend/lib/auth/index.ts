@@ -28,7 +28,7 @@ export type LoginResponse = {
       full_name: string;
       profile_image_url: string;
       birth_date: string;
-      role: string;
+      role: "admin" | "customer";
     };
     access_token: string;
     refresh_token: string;
@@ -108,3 +108,35 @@ export async function signIn(
     };
   }
 }
+
+export const refreshToken = async (oldRefreshToken: string) => {
+  try {
+    const response = await fetch(`${BASE_URL}/auth/refresh`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${oldRefreshToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to refresh token" + response.statusText);
+    }
+
+    const res: LoginResponse = await response.json();
+    // update session with new tokens
+    const updateRes = await fetch("/api/auth/update", {
+      method: "POST",
+      body: JSON.stringify({
+        accessToken: res.data.access_token,
+        refreshToken: "",
+      }),
+    });
+    if (!updateRes.ok) throw new Error("Failed to update the tokens");
+
+    return res.data.access_token;
+  } catch (err) {
+    console.error("Refresh Token failed:", err);
+    return null;
+  }
+};

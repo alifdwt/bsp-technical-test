@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.variable}>
-        <NextTopLoader />
+        <NextTopLoader color="#624CF5" />
         {children}
         <Toaster />
       </body>

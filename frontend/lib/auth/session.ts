@@ -12,7 +12,7 @@ export type Session = {
     id: number;
     email: string;
     name: string;
-    role: string;
+    role: "admin" | "customer";
     imageProfile: string;
   };
   accessToken: string;
@@ -48,7 +48,7 @@ export async function getSession() {
   if (!cookie) return null;
 
   try {
-    const { payload } = await jwtVerify(cookie, encodedKey, {
+    const { payload } = await jwtVerify<Session>(cookie, encodedKey, {
       algorithms: ["HS256"],
     });
 
