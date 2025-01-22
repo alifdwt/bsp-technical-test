@@ -78,7 +78,7 @@ func (s *authService) Login(input *auth.LoginRequest) (*responses.Login, error) 
 }
 
 func (s *authService) RefreshToken(req auth.RefreshTokenRequest) (*responses.Token, error) {
-	res, err := s.token.ValidateToken(req.RefreshToken)
+	res, _, err := s.token.ValidateToken(req.RefreshToken)
 	if err != nil {
 		return nil, errors.New("invalid refresh token")
 	}

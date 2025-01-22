@@ -50,4 +50,5 @@ func (h *Handler) InitHandler() *fiber.App {
 
 func (h *Handler) InitApi(router *fiber.App) {
 	h.initAuthGroup(router)
+	h.initBuildingTypeGroup(router)
 }

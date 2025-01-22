@@ -9,8 +9,9 @@ import (
 )
 
 type Service struct {
-	Auth AuthService
-	User UserService
+	Auth         AuthService
+	User         UserService
+	BuildingType BuildingTypeService
 }
 
 type Deps struct {
@@ -23,7 +24,8 @@ type Deps struct {
 
 func NewService(deps Deps) *Service {
 	return &Service{
-		Auth: NewAuthService(deps.Repository.User, deps.Hashing, deps.Logger, deps.Token, deps.Mapper.UserMapper),
-		User: NewUserService(deps.Repository.User, deps.Logger, deps.Mapper.UserMapper),
+		Auth:         NewAuthService(deps.Repository.User, deps.Hashing, deps.Logger, deps.Token, deps.Mapper.UserMapper),
+		User:         NewUserService(deps.Repository.User, deps.Logger, deps.Mapper.UserMapper),
+		BuildingType: NewBuildingTypeService(deps.Repository.BuildingType, deps.Logger),
 	}
 }

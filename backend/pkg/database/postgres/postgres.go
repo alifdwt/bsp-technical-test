@@ -19,6 +19,7 @@ func NewClient() (*gorm.DB, error) {
 
 	err = db.AutoMigrate(
 		&models.User{},
+		&models.BuildingType{},
 	)
 	if err != nil {
 		panic(err)
