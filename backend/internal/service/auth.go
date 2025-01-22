@@ -49,7 +49,7 @@ func (s *authService) Register(input *auth.RegisterRequest) (*responses.UserResp
 	return mapper, nil
 }
 
-func (s *authService) Login(input *auth.LoginRequest) (*responses.Token, error) {
+func (s *authService) Login(input *auth.LoginRequest) (*responses.Login, error) {
 	res, err := s.user.GetUserByEmail(input.Email)
 	if err != nil {
 		return nil, errors.New("error while get user: " + err.Error())
@@ -70,9 +70,10 @@ func (s *authService) Login(input *auth.LoginRequest) (*responses.Token, error) 
 		return nil, err
 	}
 
-	return &responses.Token{
+	return &responses.Login{
 		AccessToken:  accessToken,
 		RefreshToken: refreshToken,
+		User:         *s.mapper.ToUserResponse(res),
 	}, nil
 }
 

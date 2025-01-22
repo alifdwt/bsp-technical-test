@@ -7,7 +7,7 @@ import (
 
 type AuthService interface {
 	Register(input *auth.RegisterRequest) (*responses.UserResponse, error)
-	Login(input *auth.LoginRequest) (*responses.Token, error)
+	Login(input *auth.LoginRequest) (*responses.Login, error)
 	RefreshToken(req auth.RefreshTokenRequest) (*responses.Token, error)
 }
 
