@@ -2,6 +2,7 @@ package service
 
 import (
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/auth"
+	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/branch"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/buildingtype"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/responses"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/models"
@@ -25,4 +26,12 @@ type BuildingTypeService interface {
 	CreateBuildingType(req *buildingtype.CreateBuildingTypeRequest) (*models.BuildingType, error)
 	UpdateBuildingTypeById(id int, updatedBuildingType *buildingtype.UpdateBuildingTypeRequest) (*models.BuildingType, error)
 	DeleteBuildingTypeById(id int) (*models.BuildingType, error)
+}
+
+type BranchService interface {
+	GetBranchAll() ([]models.Branch, error)
+	GetBranchById(id int) (*models.Branch, error)
+	CreateBranch(req *branch.CreateBranch) (*models.Branch, error)
+	UpdateBranchById(id int, updatedBranch *branch.UpdateBranch) (*models.Branch, error)
+	DeleteBranchById(id int) error
 }
