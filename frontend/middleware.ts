@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { getSession } from "./lib/auth/session";
 
-const protectedRoutes = ["/dashboard", "/policy", "/product"];
+const protectedRoutes = ["/dashboard", "/policy", "/product", "/master-data"];
 const authRoutes = ["/sign-in", "/sign-up"];
 
 export default async function middleware(req: NextRequest) {

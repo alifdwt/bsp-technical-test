@@ -36,7 +36,9 @@ export default async function Layout({
           </div>
         </header>
 
-        <main className=" flex-1 p-4">{children}</main>
+        <main className="bg-dotted-pattern flex-1 bg-cover bg-fixed bg-center p-4">
+          {children}
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );

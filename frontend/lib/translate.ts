@@ -22,6 +22,10 @@ export const translateRouteToIndonesian = (route: string) => {
       return "Cetak Kartu";
     case "policy":
       return "Polis";
+    case "master data":
+      return "Data Master";
+    case "building type":
+      return "Jenis Bangunan";
     default:
       return formattedRoute;
   }

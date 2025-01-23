@@ -4,7 +4,9 @@ import React from "react";
 
 import { Button } from "../ui/button";
 
-const Header = () => {
+import { Session } from "@/lib/auth/session";
+
+const Header = ({ session }: { session: Session | null }) => {
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
@@ -21,12 +23,20 @@ const Header = () => {
         </Link>
 
         <div className="flex w-32 justify-end gap-3">
-          <Button asChild className="rounded-full" size={"lg"}>
-            <Link href={"/sign-up"}>Daftar</Link>
-          </Button>
-          <Button asChild className="rounded-full" size={"lg"}>
-            <Link href={"/sign-in"}>Masuk</Link>
-          </Button>
+          {session ? (
+            <Button asChild>
+              <Link href="/api/auth/signout">Keluar</Link>
+            </Button>
+          ) : (
+            <>
+              <Button asChild className="rounded-full" size={"lg"}>
+                <Link href={"/sign-up"}>Daftar</Link>
+              </Button>
+              <Button asChild className="rounded-full" size={"lg"}>
+                <Link href={"/sign-in"}>Masuk</Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>
