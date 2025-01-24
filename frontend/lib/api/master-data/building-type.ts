@@ -2,7 +2,7 @@
 
 import { BASE_URL } from "..";
 
-import { BuildingTypeFormValues } from "@/lib/validation/building-type";
+import { BuildingTypeFormValues } from "@/lib/validation/master-data/building-type";
 import { IFindAllResponse, IResponse } from "@/types/api-response";
 import { IBuildingTypes } from "@/types/master-data/building-type";
 

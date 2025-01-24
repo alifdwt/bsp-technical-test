@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon } from "lucide-react";
 import { useRouter } from "nextjs-toploader/app";
-import React from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
@@ -17,64 +16,59 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import {
-  createBuildingType,
-  updateBuildingType,
-} from "@/lib/api/master-data/building-type";
+import { createBranch, updateBranch } from "@/lib/api/master-data/branch";
 import { customRevalidateTag } from "@/lib/revalidate";
 import {
-  BuildingTypeFormValues,
-  buildingTypeInitValues,
-  useBuildingTypeSchema,
-} from "@/lib/validation/master-data/building-type";
-import { IBuildingTypes } from "@/types/master-data/building-type";
+  BranchFormValues,
+  branchInitValues,
+  useBranchSchema,
+} from "@/lib/validation/master-data/branch";
+import { IBranches } from "@/types/master-data/branch";
 
-const BuildingTypeForm = ({
+const BranchForm = ({
   formType,
   token,
   data,
 }: {
   formType: "add" | "edit";
   token: string;
-  data?: IBuildingTypes;
+  data?: IBranches;
 }) => {
   const { toast } = useToast();
   const router = useRouter();
 
-  const initialValues =
-    formType === "edit" && data ? data : buildingTypeInitValues;
-  const schema = useBuildingTypeSchema();
+  const initialValues = formType === "edit" && data ? data : branchInitValues;
+  const schema = useBranchSchema();
 
-  const form = useForm<BuildingTypeFormValues>({
+  const form = useForm<BranchFormValues>({
     resolver: zodResolver(schema),
     defaultValues: initialValues,
   });
 
-  const submitForm = async (values: BuildingTypeFormValues) => {
+  const submitForm = async (values: BranchFormValues) => {
     console.log("data", values);
     if (formType === "add") {
       try {
-        await createBuildingType(values, token).then((res) => {
+        await createBranch(values, token).then((res) => {
           if (res.statusCode === 201) {
-            customRevalidateTag("buildingtype");
+            customRevalidateTag("branch");
             toast({
-              title: "Success",
-              description: "Jenis bangunan berhasil ditambahkan",
+              title: "Berhasil",
+              description: "Cabang berhasil ditambahkan",
             });
-            router.push("/master-data/building-type");
+            router.push("/master-data/branch");
           } else {
-            console.log("res", res);
             toast({
-              title: "Error",
+              title: "Gagal",
               description: res.message,
               variant: "destructive",
             });
           }
         });
       } catch (error) {
-        console.error("Error creating building type:", error);
+        console.error("Error creating branch:", error);
         toast({
-          title: "Error",
+          title: "Gagal",
           description:
             error instanceof Error ? error.message : "Internal Server Error",
           variant: "destructive",
@@ -82,29 +76,26 @@ const BuildingTypeForm = ({
       }
     } else {
       try {
-        await updateBuildingType(String(data?.id), values, token).then(
-          (res) => {
-            if (res.statusCode === 200) {
-              customRevalidateTag("buildingtype");
-              toast({
-                title: "Success",
-                description: "Jenis bangunan berhasil diperbarui",
-              });
-              router.push("/master-data/building-type");
-            } else {
-              console.log("res", res);
-              toast({
-                title: "Error",
-                description: res.message,
-                variant: "destructive",
-              });
-            }
+        await updateBranch(String(data?.id), values, token).then((res) => {
+          if (res.statusCode === 200) {
+            customRevalidateTag("branch");
+            toast({
+              title: "Berhasil",
+              description: "Cabang berhasil diperbarui",
+            });
+            router.push("/master-data/branch");
+          } else {
+            toast({
+              title: "Gagal",
+              description: res.message,
+              variant: "destructive",
+            });
           }
-        );
+        });
       } catch (error) {
-        console.error("Error updating building type:", error);
+        console.error("Error updating branch:", error);
         toast({
-          title: "Error",
+          title: "Gagal",
           description:
             error instanceof Error ? error.message : "Internal Server Error",
           variant: "destructive",
@@ -117,7 +108,6 @@ const BuildingTypeForm = ({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(submitForm)} className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
-          {/* code */}
           <FormField
             control={form.control}
             name="code"
@@ -125,7 +115,7 @@ const BuildingTypeForm = ({
               <FormItem>
                 <FormLabel>Kode</FormLabel>
                 <FormControl>
-                  <Input placeholder="Kode bangunan" {...field} />
+                  <Input placeholder="Kode cabang" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -140,27 +130,7 @@ const BuildingTypeForm = ({
               <FormItem>
                 <FormLabel>Nama</FormLabel>
                 <FormControl>
-                  <Input placeholder="Nama bangunan" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* rate */}
-          <FormField
-            control={form.control}
-            name="rate"
-            render={({ field: { value, onChange } }) => (
-              <FormItem>
-                <FormLabel>Tarif</FormLabel>
-                <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="Tarif"
-                    value={value}
-                    onChange={(e) => onChange(Number(e.target.value))}
-                  />
+                  <Input placeholder="Nama cabang" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -179,4 +149,4 @@ const BuildingTypeForm = ({
   );
 };
 
-export default BuildingTypeForm;
+export default BranchForm;
