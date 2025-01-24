@@ -1,5 +1,13 @@
 import { z } from "zod";
 
+// const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+// const ACCEPTED_IMAGE_TYPES = [
+//   "image/jpeg",
+//   "image/jpg",
+//   "image/png",
+//   "image/webp",
+// ];
+
 export const SignInSchema = z.object({
   email: z
     .string()
@@ -13,6 +21,16 @@ export const SignInSchema = z.object({
 });
 
 export const SignUpSchema = z.object({
+  profile_image: z.any(),
+  // .refine(
+  //   (file) => !file || file.size !== 0 || file.size <= MAX_FILE_SIZE,
+  //   `Max image size is ${MAX_FILE_SIZE}MB`
+  // )
+  // .refine(
+  //   (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+  //   "Only .jpg, .jpeg, .png and .webp formats are supported."
+  // ),
+
   username: z
     .string()
     .min(3, { message: "Username must be at least 3 characters long." })
@@ -21,7 +39,7 @@ export const SignUpSchema = z.object({
       message: "Username can only contain letters, numbers, and underscores.",
     }),
 
-  name: z
+  full_name: z
     .string()
     .min(1, { message: "Name is required." })
     .max(50, { message: "Name cannot exceed 50 characters." })
@@ -48,4 +66,6 @@ export const SignUpSchema = z.object({
     .regex(/[^a-zA-Z0-9]/, {
       message: "Password must contain at least one special character.",
     }),
+
+  birth_date: z.string().min(1, { message: "Birth date is required." }),
 });

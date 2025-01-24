@@ -112,9 +112,9 @@ func (h *Handler) handlerRegister(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.Status(fiber.StatusOK).JSON(responses.Response{
+	return c.Status(fiber.StatusCreated).JSON(responses.Response{
 		Message:    "Successfully register user",
-		StatusCode: fiber.StatusOK,
+		StatusCode: fiber.StatusCreated,
 		Data:       user,
 	})
 }
