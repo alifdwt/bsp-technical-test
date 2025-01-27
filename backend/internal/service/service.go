@@ -13,6 +13,7 @@ type Service struct {
 	User         UserService
 	BuildingType BuildingTypeService
 	Branch       BranchService
+	FireProduct  FireProductService
 }
 
 type Deps struct {
@@ -29,5 +30,6 @@ func NewService(deps Deps) *Service {
 		User:         NewUserService(deps.Repository.User, deps.Logger, deps.Mapper.UserMapper),
 		BuildingType: NewBuildingTypeService(deps.Repository.BuildingType, deps.Logger),
 		Branch:       NewBranchService(deps.Repository.Branch, deps.Logger),
+		FireProduct:  NewFireProductService(deps.Repository.FireProduct, deps.Logger),
 	}
 }

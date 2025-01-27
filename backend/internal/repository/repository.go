@@ -6,6 +6,8 @@ type Repositories struct {
 	User         UserRepository
 	BuildingType BuildingTypeRepository
 	Branch       BranchRepository
+	FireProduct  FireProductRepository
+	Invoice      InvoiceRepository
 }
 
 func NewRepositories(db *gorm.DB) *Repositories {
@@ -13,5 +15,7 @@ func NewRepositories(db *gorm.DB) *Repositories {
 		User:         NewUserRepository(db),
 		BuildingType: NewBuildingTypeRepository(db),
 		Branch:       NewBranchRepository(db),
+		FireProduct:  NewFireProductRepository(db),
+		Invoice:      NewInvoiceRepository(db),
 	}
 }

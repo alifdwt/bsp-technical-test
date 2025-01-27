@@ -21,6 +21,7 @@ func NewClient() (*gorm.DB, error) {
 		&models.User{},
 		&models.BuildingType{},
 		&models.Branch{},
+		&models.FireProduct{},
 	)
 	if err != nil {
 		panic(err)

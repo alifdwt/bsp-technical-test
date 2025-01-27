@@ -33,3 +33,16 @@ type BranchRepository interface {
 	UpdateBranchById(id int, req *branch.UpdateBranch) (*models.Branch, error)
 	DeleteBranchById(id int) error
 }
+
+type FireProductRepository interface {
+	CreateFireProduct(req models.FireProduct) (*models.FireProduct, error)
+	GetFireProductAll() (*[]models.FireProduct, error)
+	GetFireProductById(id int) (*models.FireProduct, error)
+	GetFireProductByUserId(id int) (*[]models.FireProduct, error)
+	UpdateFireProductById(id int, updatedFireProduct models.FireProduct) (*models.FireProduct, error)
+	DeleteFireProductById(id int) error
+}
+
+type InvoiceRepository interface {
+	CreateInvoice(req models.Invoice) (*models.Invoice, error)
+}

@@ -56,6 +56,39 @@ definitions:
     - name
     - rate
     type: object
+  fireproduct.CreateFireProductRequest:
+    properties:
+      address:
+        type: string
+      building_type_id:
+        type: integer
+      city:
+        type: string
+      construction:
+        type: integer
+      district:
+        type: string
+      is_earthquake:
+        type: boolean
+      period:
+        type: integer
+      price:
+        type: number
+      province:
+        type: string
+      user_id:
+        type: integer
+    required:
+    - address
+    - building_type_id
+    - city
+    - construction
+    - district
+    - is_earthquake
+    - period
+    - price
+    - province
+    type: object
   responses.ErrorMessage:
     properties:
       error:
@@ -516,6 +549,132 @@ paths:
       summary: Greet the user
       tags:
       - BuildingType
+  /product/fire:
+    get:
+      consumes:
+      - application/json
+      description: Get all fire products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get all fire products
+      tags:
+      - FireProduct
+    post:
+      consumes:
+      - application/json
+      description: Create a new fire product
+      parameters:
+      - description: Create Fire Product Request
+        in: body
+        name: fireproduct
+        required: true
+        schema:
+          $ref: '#/definitions/fireproduct.CreateFireProductRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Create a new fire product
+      tags:
+      - FireProduct
+  /product/fire/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete fire product by id
+      parameters:
+      - description: Fire Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Delete fire product by id
+      tags:
+      - FireProduct
+    get:
+      consumes:
+      - application/json
+      description: Get fire product by id
+      parameters:
+      - description: Fire Product ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get fire product by id
+      tags:
+      - FireProduct
+  /product/fire/hello:
+    get:
+      description: Return a greeting message to the user
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Greet the user
+      tags:
+      - FireProduct
 securityDefinitions:
   BearerAuth:
     in: Header

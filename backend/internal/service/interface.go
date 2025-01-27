@@ -4,6 +4,7 @@ import (
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/auth"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/branch"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/buildingtype"
+	fireproduct "github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/fire_product"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/responses"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/models"
 )
@@ -34,4 +35,13 @@ type BranchService interface {
 	CreateBranch(req *branch.CreateBranch) (*models.Branch, error)
 	UpdateBranchById(id int, updatedBranch *branch.UpdateBranch) (*models.Branch, error)
 	DeleteBranchById(id int) error
+}
+
+type FireProductService interface {
+	GetFireProductAll() ([]models.FireProduct, error)
+	GetFireProductById(id int) (*models.FireProduct, error)
+	GetFireProductByUserId(userId int) ([]models.FireProduct, error)
+	CreateFireProduct(userId int, req fireproduct.CreateFireProductRequest) (*models.FireProduct, error)
+
+	DeleteFireProductById(id int) error
 }
