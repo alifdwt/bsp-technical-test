@@ -29,7 +29,33 @@ export const fireProductColumns: ColumnDef<IFireProducts>[] = [
     accessorKey: "invoice_code",
     header: "No. Invoice",
     cell: ({ row }) => {
-      return row.original.invoice_code || "Belum terbit";
+      switch (row.original.invoice_code) {
+        case "":
+          return (
+            <Button asChild>
+              <Link
+                href={`/invoice/create?type=product/fire&id=${row.original.id}`}
+              >
+                Buat Faktur
+              </Link>
+            </Button>
+          );
+        case "payment-sent":
+          return (
+            <p className="font-semibold text-yellow-500">
+              Menunggu konfirmasi admin
+            </p>
+          );
+        default:
+          return (
+            <Link
+              href={`/invoice/view?code=${row.original.invoice_code}`}
+              className="text-primary font-semibold hover:underline"
+            >
+              {row.original.invoice_code}
+            </Link>
+          );
+      }
     },
   },
   {

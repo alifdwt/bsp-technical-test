@@ -96,3 +96,23 @@ func (r *fireProductRepository) DeleteFireProductById(id int) error {
 
 	return nil
 }
+
+func (r *fireProductRepository) SetFireProductInvoiceCode(id int, code string) error {
+	var fireProduct models.FireProduct
+
+	db := r.db.Model(&fireProduct)
+
+	checkFireProductById := db.Debug().Where("id = ?", id).First(&fireProduct)
+	if checkFireProductById.Error != nil {
+		return checkFireProductById.Error
+	}
+
+	fireProduct.InvoiceCode = code
+
+	db = db.Model(&fireProduct).Updates(&fireProduct)
+	if db.Error != nil {
+		return db.Error
+	}
+
+	return nil
+}

@@ -2,6 +2,7 @@ package handler
 
 import (
 	_ "github.com/alifdwt/bsp-technical-test-backend/docs"
+	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/responses"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/service"
 	"github.com/alifdwt/bsp-technical-test-backend/pkg/auth"
 	"github.com/alifdwt/bsp-technical-test-backend/pkg/cloudinary"
@@ -45,6 +46,15 @@ func (h *Handler) InitHandler() *fiber.App {
 
 	h.InitApi(router)
 
+	// 404 Handler
+	router.Use(func(c *fiber.Ctx) error {
+		return c.Status(fiber.StatusNotFound).JSON(responses.ErrorMessage{
+			StatusCode: fiber.StatusNotFound,
+			Message:    "Route not found",
+			Error:      true,
+		})
+	})
+
 	return router
 }
 
@@ -53,4 +63,5 @@ func (h *Handler) InitApi(router *fiber.App) {
 	h.initBuildingTypeGroup(router)
 	h.initBranchGroup(router)
 	h.initFireProductGroup(router)
+	h.initInvoiceGroup(router)
 }

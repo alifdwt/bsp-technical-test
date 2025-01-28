@@ -256,6 +256,27 @@ body {
   .toggle-switch {
     @apply bg-gray-300 !important;
   }
+
+  /* MODAL INTERCEPT */
+  .modal-backdrop {
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex justify-center items-center z-50;
+  }
+
+  .modal {
+    @apply h-auto bg-white rounded-lg p-5 relative flex justify-center items-center text-4xl font-semibold;
+  }
+
+  .close-button {
+    @apply absolute top-5 right-5 w-12 h-12 bg-transparent border-none rounded-full cursor-pointer flex items-center justify-center font-semibold text-2xl;
+  }
+
+  .close-button:hover {
+    @apply bg-gray-200;
+  }
+
+  .close-button:after {
+    @apply content-['x'] text-black;
+  }
 }
 
 /* ========================================== CLERK STYLES */

@@ -26,6 +26,14 @@ export const translateRouteToIndonesian = (route: string) => {
       return "Data Master";
     case "building type":
       return "Jenis Bangunan";
+    case "invoice":
+      return "Faktur";
+
+    case "add":
+      return "Tambah";
+    case "create":
+      return "Buat";
+
     default:
       return formattedRoute;
   }

@@ -41,8 +41,15 @@ type FireProductRepository interface {
 	GetFireProductByUserId(id int) (*[]models.FireProduct, error)
 	UpdateFireProductById(id int, updatedFireProduct models.FireProduct) (*models.FireProduct, error)
 	DeleteFireProductById(id int) error
+
+	SetFireProductInvoiceCode(id int, code string) error
 }
 
 type InvoiceRepository interface {
 	CreateInvoice(req models.Invoice) (*models.Invoice, error)
+	GetInvoiceByCode(code string) (*models.Invoice, error)
+	GetInvoiceAll() (*[]models.Invoice, error)
+	GetInvoiceByUserID(userID int) (*[]models.Invoice, error)
+	GetInvoiceByCodeAndUserID(code string, userID int) (*models.Invoice, error)
+	GetNextInvoiceCode() (string, error)
 }

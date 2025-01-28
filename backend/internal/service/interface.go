@@ -5,6 +5,7 @@ import (
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/branch"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/buildingtype"
 	fireproduct "github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/fire_product"
+	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/invoice"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/responses"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/models"
 )
@@ -44,4 +45,13 @@ type FireProductService interface {
 	CreateFireProduct(userId int, req fireproduct.CreateFireProductRequest) (*models.FireProduct, error)
 
 	DeleteFireProductById(id int) error
+}
+
+type InvoiceService interface {
+	GetInvoiceAll() ([]models.Invoice, error)
+	GetInvoiceByCode(code string) (*models.Invoice, error)
+	GetInvoiceByUserID(userID int) ([]models.Invoice, error)
+	GetInvoiceByCodeAndUserID(code string, userID int) (*models.Invoice, error)
+	CreateInvoice(userId int, req *invoice.CreateInvoiceRequest) (*models.Invoice, error)
+	GetNextInvoiceCode() (string, error)
 }

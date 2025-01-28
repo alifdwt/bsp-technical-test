@@ -30,6 +30,7 @@ export default function RootLayout({
         <NextTopLoader color="#624CF5" />
         {children}
         <Toaster />
+        <div id="modal-root" />
       </body>
     </html>
   );

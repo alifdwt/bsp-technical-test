@@ -16,3 +16,13 @@ func CalculatePremiumBase(insuredPrice float32, premiumRate float32, isPermille 
 
 	return premiumBase, nil
 }
+
+func CalculatePremiumTotal(basePrice float32, transactionFee float32, total float32) (float32, error) {
+	calculatedPremiumTotal := basePrice + transactionFee
+
+	if calculatedPremiumTotal != total {
+		return 0, errors.New("calculated premium total is not equal to total")
+	}
+
+	return total, nil
+}

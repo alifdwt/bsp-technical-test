@@ -84,10 +84,34 @@ definitions:
     - city
     - construction
     - district
-    - is_earthquake
     - period
     - price
     - province
+    type: object
+  invoice.CreateInvoiceRequest:
+    properties:
+      fire_product_id:
+        type: integer
+      insured_price:
+        type: number
+      period:
+        type: integer
+      premium_base:
+        type: number
+      premium_rate:
+        type: number
+      total:
+        type: number
+      transaction_fee:
+        type: number
+    required:
+    - fire_product_id
+    - insured_price
+    - period
+    - premium_base
+    - premium_rate
+    - total
+    - transaction_fee
     type: object
   responses.ErrorMessage:
     properties:
@@ -549,6 +573,135 @@ paths:
       summary: Greet the user
       tags:
       - BuildingType
+  /invoice:
+    get:
+      consumes:
+      - application/json
+      description: Get all invoices
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get all invoices
+      tags:
+      - Invoice
+    post:
+      consumes:
+      - application/json
+      description: Create an invoice
+      parameters:
+      - description: Create Invoice Request
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/invoice.CreateInvoiceRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Create an invoice
+      tags:
+      - Invoice
+  /invoice/{code}:
+    get:
+      consumes:
+      - application/json
+      description: Get an invoice by Code
+      parameters:
+      - description: Invoice Code
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get an invoice by Code
+      tags:
+      - Invoice
+  /invoice/hello:
+    get:
+      description: Return a greeting message to the user
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Greet the user
+      tags:
+      - Invoice
+  /invoice/next-code:
+    get:
+      consumes:
+      - application/json
+      description: Get next invoice code
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Get next invoice code
+      tags:
+      - Invoice
   /product/fire:
     get:
       consumes:

@@ -10,7 +10,7 @@ import { TProduct } from "@/constants/product";
 const ProductTabs = ({ products }: { products: TProduct[] }) => {
   const pathname = usePathname();
   return (
-    <div className="flex justify-between rounded-xl border bg-white p-4 shadow">
+    <div className="flex max-w-[96vw] justify-between gap-4 overflow-x-auto rounded-xl border bg-white p-4 shadow">
       <div className="flex gap-2">
         {products.map((product, index) => (
           <Button

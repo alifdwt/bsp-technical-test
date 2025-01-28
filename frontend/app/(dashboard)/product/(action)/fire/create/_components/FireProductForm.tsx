@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import MoneyInput from "@/components/ui/currency-input";
 import {
   Form,
   FormControl,
@@ -83,7 +84,7 @@ const FireProductForm = ({
             title: "Success",
             description: "Produk berhasil ditambahkan",
           });
-          router.push("/product/fire");
+          router.push(`/invoice/create?type=product/fire&id=${res?.data?.id}`);
         } else {
           console.log("res", res);
           toast({
@@ -103,6 +104,8 @@ const FireProductForm = ({
       });
     }
   };
+
+  // console.log("values", form.getValues());
 
   return (
     <Form {...form}>
@@ -170,23 +173,11 @@ const FireProductForm = ({
               />
 
               {/* price */}
-              <FormField
-                control={form.control}
+              <MoneyInput
+                form={form}
+                label="Harga Pertanggungan"
                 name="price"
-                render={({ field: { value, onChange } }) => (
-                  <FormItem>
-                    <FormLabel>Harga Bangunan</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        placeholder="Harga"
-                        value={value}
-                        onChange={(e) => onChange(Number(e.target.value))}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                placeholder="Rp."
               />
             </div>
 
