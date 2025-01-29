@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import React from "react";
 
+import { NavUser } from "@/components/navigation/nav-user";
 import { AppSidebar } from "@/components/navigation/sidebar";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -13,11 +14,9 @@ import { getSession } from "@/lib/auth/session";
 export default async function Layout({
   children,
   breadcrumbs,
-  userSidebar,
 }: {
   children: React.ReactNode;
   breadcrumbs: React.ReactNode;
-  userSidebar: React.ReactNode;
 }) {
   const session = await getSession();
   if (!session) {
@@ -26,7 +25,10 @@ export default async function Layout({
 
   return (
     <SidebarProvider>
-      <AppSidebar navUser={userSidebar} role={session.user.role} />
+      <AppSidebar
+        navUser={<NavUser session={session} />}
+        role={session.user.role}
+      />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center justify-between gap-2 px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2">

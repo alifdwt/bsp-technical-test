@@ -56,13 +56,12 @@ export async function getSession() {
     return payload;
   } catch (err) {
     console.error("Failed to verify the session", err);
-    redirect("/sign-in");
+    redirect("/");
   }
 }
 
 export async function deleteSession() {
   await cookies().delete("session");
-  await cookies().delete("onBoardingAccessToken");
 }
 
 export async function updateTokens({

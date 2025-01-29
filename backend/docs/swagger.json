@@ -9,7 +9,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "marginal-gabbey-alifdwt-44f5de28.koyeb.app",
     "basePath": "/api",
     "paths": {
         "/auth/hello": {
@@ -1407,11 +1407,6 @@
         },
         "/user/{username}": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get user by username",
                 "consumes": [
                     "application/json"

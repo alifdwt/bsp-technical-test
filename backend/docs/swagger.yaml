@@ -156,7 +156,7 @@ definitions:
     - email
     - full_name
     type: object
-host: localhost:8080
+host: marginal-gabbey-alifdwt-44f5de28.koyeb.app
 info:
   contact:
     email: aputradewantara@gmail.com
@@ -1033,8 +1033,6 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/responses.ErrorMessage'
-      security:
-      - BearerAuth: []
       summary: Get user by username
       tags:
       - User

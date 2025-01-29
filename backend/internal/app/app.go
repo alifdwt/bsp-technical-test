@@ -23,7 +23,7 @@ import (
 // @contact.url https://github.com/alifdwt
 // @contact.email aputradewantara@gmail.com
 
-// @host localhost:8080
+// @host marginal-gabbey-alifdwt-44f5de28.koyeb.app
 // @BasePath /api
 
 // @securityDefinitions.apikey BearerAuth

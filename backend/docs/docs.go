@@ -1414,11 +1414,6 @@ const docTemplate = `{
         },
         "/user/{username}": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Get user by username",
                 "consumes": [
                     "application/json"
@@ -1704,7 +1699,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:8080",
+	Host:             "marginal-gabbey-alifdwt-44f5de28.koyeb.app",
 	BasePath:         "/api",
 	Schemes:          []string{},
 	Title:            "Bsp Technical Test Backend",
