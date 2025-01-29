@@ -123,6 +123,28 @@ func (r *userRepository) UpdateUserById(id int, updatedUser *user.UpdateUserRequ
 	return &user, nil
 }
 
+// update only name and email
+func (r *userRepository) UpdateUserByUsername(username string, req models.User) (*models.User, error) {
+	var user models.User
+
+	db := r.db.Model(&user)
+
+	checkUserByUsername := db.Debug().Where("username = ?", username).First(&user)
+	if checkUserByUsername.Error != nil {
+		return nil, checkUserByUsername.Error
+	}
+
+	user.FullName = req.FullName
+	user.Email = req.Email
+
+	updateUser := db.Debug().Updates(&user)
+	if updateUser.Error != nil {
+		return nil, updateUser.Error
+	}
+
+	return &user, nil
+}
+
 func (r *userRepository) DeleteUserById(id int) (*models.User, error) {
 	var user models.User
 

@@ -7,6 +7,7 @@ import (
 	fireproduct "github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/fire_product"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/invoice"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/policy"
+	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/user"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/responses"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/models"
 )
@@ -21,6 +22,8 @@ type UserService interface {
 	GetUserAll() (*[]responses.UserResponse, error)
 	GetUserById(id int) (*responses.UserResponse, error)
 	GetUserByUsername(username string) (*responses.UserResponse, error)
+	UpdateUserById(id int, req *user.UpdateUserRequest) (*responses.UserResponse, error)
+	UpdateUserByUsername(username string, req *user.UpdateUserByUsernameRequest) (*responses.UserResponse, error)
 }
 
 type BuildingTypeService interface {

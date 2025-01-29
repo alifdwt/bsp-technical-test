@@ -10,4 +10,5 @@ type UserResponse struct {
 	ProfileImageURL string    `json:"profile_image_url"`
 	BirthDate       time.Time `json:"birth_date"`
 	Role            string    `json:"role"`
+	CreatedAt       time.Time `json:"created_at"`
 }

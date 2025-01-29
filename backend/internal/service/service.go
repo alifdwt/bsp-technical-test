@@ -29,7 +29,7 @@ type Deps struct {
 func NewService(deps Deps) *Service {
 	return &Service{
 		Auth:         NewAuthService(deps.Repository.User, deps.Hashing, deps.Logger, deps.Token, deps.Mapper.UserMapper),
-		User:         NewUserService(deps.Repository.User, deps.Logger, deps.Mapper.UserMapper),
+		User:         NewUserService(deps.Repository.User, deps.Logger, deps.Mapper.UserMapper, deps.Hashing),
 		BuildingType: NewBuildingTypeService(deps.Repository.BuildingType, deps.Logger),
 		Branch:       NewBranchService(deps.Repository.Branch, deps.Logger),
 		FireProduct:  NewFireProductService(deps.Repository.FireProduct, deps.Logger),

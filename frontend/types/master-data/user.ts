@@ -3,7 +3,6 @@ export interface IUsers {
   username: string;
   full_name: string;
   email: string;
-  password: string;
   birth_date: string;
   profile_image_url: string;
   role: string;

@@ -83,6 +83,7 @@ export async function signIn(
       user: {
         id: result.data.user.id,
         email: result.data.user.email,
+        username: result.data.user.username,
         name: result.data.user.full_name,
         role: result.data.user.role,
         imageProfile: result.data.user.profile_image_url,

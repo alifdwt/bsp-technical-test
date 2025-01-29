@@ -16,7 +16,11 @@ export const fireProductColumns: ColumnDef<IFireProducts>[] = [
     accessorKey: "policy_code",
     header: "No. Polis",
     cell: ({ row }) => {
-      return row.original.policy_code || "Belum terbit";
+      if (row.original.policy_code) {
+        return <p className="font-semibold">{row.original.policy_code}</p>;
+      } else {
+        return "Belum terbit";
+      }
     },
   },
   {

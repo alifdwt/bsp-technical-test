@@ -127,7 +127,7 @@ export function NavUser({ session }: { session: Session | null }) {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/dashboard/profile">
+                <Link href={`/profile/${session?.user.username}`}>
                   <UserIcon />
                   <span>Profil</span>
                 </Link>

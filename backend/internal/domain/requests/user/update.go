@@ -25,3 +25,19 @@ func (l *UpdateUserRequest) Validate() error {
 
 	return nil
 }
+
+type UpdateUserByUsernameRequest struct {
+	FullName string `json:"full_name" validate:"required"`
+	Email    string `json:"email" validate:"required,email"`
+}
+
+func (l *UpdateUserByUsernameRequest) Validate() error {
+	validate := validator.New()
+
+	err := validate.Struct(l)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

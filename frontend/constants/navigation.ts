@@ -3,7 +3,6 @@ import {
   DatabaseIcon,
   HomeIcon,
   LandmarkIcon,
-  NotepadTextIcon,
   SquareChartGanttIcon,
 } from "lucide-react";
 
@@ -37,13 +36,13 @@ export const docsConfig: DocsConfig = {
       items: [],
       role: ["admin", "customer"],
     },
-    {
-      title: "Polis",
-      href: "/policy",
-      icon: NotepadTextIcon,
-      items: [],
-      role: ["admin", "customer"],
-    },
+    // {
+    //   title: "Polis",
+    //   href: "/policy",
+    //   icon: NotepadTextIcon,
+    //   items: [],
+    //   role: ["admin", "customer"],
+    // },
     {
       title: "Data Master",
       icon: DatabaseIcon,

@@ -11,6 +11,7 @@ export type Session = {
   user: {
     id: number;
     email: string;
+    username: string;
     name: string;
     role: "admin" | "customer";
     imageProfile: string;

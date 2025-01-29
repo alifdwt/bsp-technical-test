@@ -15,6 +15,7 @@ type UserRepository interface {
 	GetUserByUsername(username string) (*models.User, error)
 	CreateUser(registerReq *auth.RegisterRequest) (*models.User, error)
 	UpdateUserById(id int, updatedUser *user.UpdateUserRequest) (*models.User, error)
+	UpdateUserByUsername(username string, req models.User) (*models.User, error)
 	DeleteUserById(id int) (*models.User, error)
 }
 
