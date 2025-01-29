@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 
-import DetailSection from "./_components/DetailSection";
-
 import LoadingPage from "@/components/layout/LoadingPage";
+
+import DetailSection from "./_components/DetailSection";
 
 export default function FireProductDetailPage({
   params,

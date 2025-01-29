@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 
-import BranchDatatable from "./_components/BranchDatatable";
-
 import DatatableLoading from "@/components/datatable/DatatableLoading";
+
+import BranchDatatable from "./_components/BranchDatatable";
 
 export default function BranchPage() {
   return (

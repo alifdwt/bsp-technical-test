@@ -6,7 +6,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex-center bg-primary-50 bg-dotted-pattern min-h-screen w-full bg-cover bg-fixed bg-center">
+    <main className="flex-center min-h-screen w-full bg-primary-50 bg-dotted-pattern bg-cover bg-fixed bg-center">
       <section className="min-w-full rounded-[10px] bg-white px-4 py-10 shadow-2xl sm:min-w-[520px] sm:px-6">
         <div className="flex items-center justify-between gap-2">
           <div className="space-y-2.5">

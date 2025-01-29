@@ -1,14 +1,14 @@
 import Link from "next/link";
 import React from "react";
 
-import PayButton from "./PayButton";
-import InvoiceTable from "../../_components/InvoiceTable";
-
 import { Button } from "@/components/ui/button";
 import { getNextInvoiceCode } from "@/lib/api/invoice";
 import { getFireProduct } from "@/lib/api/product/fire";
 import { getSession } from "@/lib/auth/session";
 import { calculateFireProductPremiumBase } from "@/lib/calculation/invoice/fire-product";
+
+import PayButton from "./PayButton";
+import InvoiceTable from "../../_components/InvoiceTable";
 
 const FireProductInvoice = async ({ id }: { id: string }) => {
   // wait 5 seconds

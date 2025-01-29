@@ -1,8 +1,8 @@
 import React from "react";
 
-import BranchForm from "../_components/form/BranchForm";
-
 import { getSession } from "@/lib/auth/session";
+
+import BranchForm from "../_components/form/BranchForm";
 
 export default async function AddBranchPage() {
   const session = await getSession();

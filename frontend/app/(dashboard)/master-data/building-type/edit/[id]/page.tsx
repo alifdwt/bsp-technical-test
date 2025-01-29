@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 
-import EditFormWrapper from "./_components/EditFormWrapper";
-
 import LoadingPage from "@/components/layout/LoadingPage";
+
+import EditFormWrapper from "./_components/EditFormWrapper";
 
 export default function EditBuildingTypePage({
   params,

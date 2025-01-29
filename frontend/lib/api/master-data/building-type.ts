@@ -1,10 +1,10 @@
 "use server";
 
-import { BASE_URL } from "..";
-
 import { BuildingTypeFormValues } from "@/lib/validation/master-data/building-type";
 import { IFindAllResponse, IResponse } from "@/types/api-response";
 import { IBuildingTypes } from "@/types/master-data/building-type";
+
+import { BASE_URL } from "..";
 
 export const getBuildingTypes = async (token: string) => {
   try {

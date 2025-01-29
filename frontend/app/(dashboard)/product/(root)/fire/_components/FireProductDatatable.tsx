@@ -1,11 +1,11 @@
 import React from "react";
 
-import { adminFireProductColumns } from "./admin-columns";
-import { fireProductColumns } from "./columns";
-
 import DataTable from "@/components/datatable/DataTable";
 import { getFireProducts } from "@/lib/api/product/fire";
 import { getSession } from "@/lib/auth/session";
+
+import { adminFireProductColumns } from "./admin-columns";
+import { fireProductColumns } from "./columns";
 
 const FireProductDatatable = async () => {
   const session = await getSession();

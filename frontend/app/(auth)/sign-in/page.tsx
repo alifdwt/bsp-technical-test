@@ -11,7 +11,7 @@ export default function SignInPage() {
       <SignInForm />
       <p>
         Belum punya akun?{" "}
-        <Link href={"/sign-up"} className="text-primary font-semibold">
+        <Link href={"/sign-up"} className="font-semibold text-primary">
           Daftar
         </Link>
       </p>

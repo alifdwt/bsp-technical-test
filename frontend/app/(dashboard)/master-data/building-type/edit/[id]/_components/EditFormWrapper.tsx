@@ -1,9 +1,9 @@
 import React from "react";
 
-import BuildingTypeForm from "../../../_components/forms/BuildingTypeForm";
-
 import { getBuildingType } from "@/lib/api/master-data/building-type";
 import { getSession } from "@/lib/auth/session";
+
+import BuildingTypeForm from "../../../_components/forms/BuildingTypeForm";
 
 const EditFormWrapper = async ({ id }: { id: string }) => {
   const session = await getSession();
@@ -16,7 +16,7 @@ const EditFormWrapper = async ({ id }: { id: string }) => {
     throw new Error("Data not found");
   }
 
-  //   wait 5 seconds
+  // wait 5 seconds
   //   await new Promise((resolve) => setTimeout(resolve, 5000));
 
   return (

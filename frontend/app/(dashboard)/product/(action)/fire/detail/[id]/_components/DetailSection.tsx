@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
 
-import FireProductForm from "../../../_components/FireProductForm";
-
 import GetInvoice from "@/app/(dashboard)/invoice/view/_components/GetInvoice";
 import LoadingPage from "@/components/layout/LoadingPage";
 import { getBuildingTypes } from "@/lib/api/master-data/building-type";
 import { getFireProduct } from "@/lib/api/product/fire";
 import { getSession } from "@/lib/auth/session";
+
+import FireProductForm from "../../../_components/FireProductForm";
 
 const DetailSection = async ({ id }: { id: string }) => {
   const session = await getSession();

@@ -2,9 +2,6 @@
 
 import * as React from "react";
 
-import { NavMain } from "./nav-main";
-import { TeamSwitcher } from "./team-switcher";
-
 import {
   Sidebar,
   SidebarContent,
@@ -13,6 +10,9 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { docsConfig } from "@/constants/navigation";
+
+import { NavMain } from "./nav-main";
+import { TeamSwitcher } from "./team-switcher";
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   navUser: React.ReactNode;

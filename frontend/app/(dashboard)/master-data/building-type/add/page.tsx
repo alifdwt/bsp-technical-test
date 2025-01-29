@@ -1,8 +1,8 @@
 import React from "react";
 
-import BuildingTypeForm from "../_components/forms/BuildingTypeForm";
-
 import { getSession } from "@/lib/auth/session";
+
+import BuildingTypeForm from "../_components/forms/BuildingTypeForm";
 
 export default async function AddBuildingTypePage() {
   const session = await getSession();

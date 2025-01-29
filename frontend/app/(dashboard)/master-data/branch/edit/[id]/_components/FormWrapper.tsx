@@ -1,9 +1,9 @@
 import React from "react";
 
-import BranchForm from "../../../_components/form/BranchForm";
-
 import { getBranch } from "@/lib/api/master-data/branch";
 import { getSession } from "@/lib/auth/session";
+
+import BranchForm from "../../../_components/form/BranchForm";
 
 const EditBranchFormWrapper = async ({ id }: { id: string }) => {
   const session = await getSession();

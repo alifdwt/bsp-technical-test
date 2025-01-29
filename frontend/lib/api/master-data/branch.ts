@@ -1,10 +1,10 @@
 "use server";
 
-import { BASE_URL } from "..";
-
 import { BranchFormValues } from "@/lib/validation/master-data/branch";
 import { IFindAllResponse, IResponse } from "@/types/api-response";
 import { IBranches } from "@/types/master-data/branch";
+
+import { BASE_URL } from "..";
 
 export const getBranches = async (token: string) => {
   try {

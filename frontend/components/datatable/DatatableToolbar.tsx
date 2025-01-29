@@ -2,9 +2,9 @@ import { Table } from "@tanstack/react-table";
 import Link from "next/link";
 import React from "react";
 
-import { Button } from "../ui/button";
-
 import { Input } from "@/components/ui/input";
+
+import { Button } from "../ui/button";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;

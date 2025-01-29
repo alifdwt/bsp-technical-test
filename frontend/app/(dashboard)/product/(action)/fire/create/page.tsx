@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import React, { Suspense } from "react";
 
-import CreateFireProductFormWrapper from "./_components/CreateFireProductFormWrapper";
-
 import LoadingPage from "@/components/layout/LoadingPage";
 import PageHeader from "@/components/layout/PageHeader";
+
+import CreateFireProductFormWrapper from "./_components/CreateFireProductFormWrapper";
 
 export const metadata: Metadata = {
   title: "Pengajuan Klaim Kebakaran",

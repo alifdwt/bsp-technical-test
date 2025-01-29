@@ -94,14 +94,14 @@ const AuthForm = <T extends FieldValues>({
         {formType === "SIGN_IN" ? (
           <p>
             Belum punya akun?{" "}
-            <Link href={"/sign-up"} className="text-primary font-semibold">
+            <Link href={"/sign-up"} className="font-semibold text-primary">
               Daftar
             </Link>
           </p>
         ) : (
           <p>
             Sudah punya akun?{" "}
-            <Link href={"/sign-in"} className="text-primary font-semibold">
+            <Link href={"/sign-in"} className="font-semibold text-primary">
               Masuk
             </Link>
           </p>

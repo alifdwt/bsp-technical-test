@@ -1,9 +1,9 @@
 import React from "react";
 
-import InvoiceTable from "../../_components/InvoiceTable";
-
 import { getInvoiceByCode } from "@/lib/api/invoice";
 import { getSession } from "@/lib/auth/session";
+
+import InvoiceTable from "../../_components/InvoiceTable";
 
 const GetInvoice = async ({ code }: { code: string }) => {
   // wait 5 seconds

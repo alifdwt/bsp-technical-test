@@ -3,6 +3,10 @@
 import { Loader2Icon, Trash2Icon } from "lucide-react";
 import React from "react";
 
+import { useToast } from "@/hooks/use-toast";
+import { deleteData } from "@/lib/api/api";
+import { customRevalidateTag } from "@/lib/revalidate";
+
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -14,10 +18,6 @@ import {
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
 import { Button } from "../ui/button";
-
-import { useToast } from "@/hooks/use-toast";
-import { deleteData } from "@/lib/api/api";
-import { customRevalidateTag } from "@/lib/revalidate";
 
 const DatatableDeleteButton = ({
   deleteLink,

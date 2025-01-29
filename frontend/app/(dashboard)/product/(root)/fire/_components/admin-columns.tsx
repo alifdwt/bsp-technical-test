@@ -3,10 +3,10 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 
-import PolicyButton from "./PolicyButton";
-
 import { Button } from "@/components/ui/button";
 import { IFireProducts } from "@/types/product/fire";
+
+import PolicyButton from "./PolicyButton";
 
 export const adminFireProductColumns: ColumnDef<IFireProducts>[] = [
   // TODO: policy_number, insured_type,, invoice_number, payment_status, details
@@ -61,7 +61,7 @@ export const adminFireProductColumns: ColumnDef<IFireProducts>[] = [
           return (
             <Link
               href={`/invoice/view?code=${row.original.invoice_code}`}
-              className="text-primary font-semibold hover:underline"
+              className="font-semibold text-primary hover:underline"
             >
               {row.original.invoice_code}
             </Link>

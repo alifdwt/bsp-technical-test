@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 
-import GetInvoice from "./_components/GetInvoice";
-
 import LoadingPage from "@/components/layout/LoadingPage";
+
+import GetInvoice from "./_components/GetInvoice";
 
 export default function ViewInvoicePage({
   searchParams,

@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 
-import EditBranchFormWrapper from "./_components/FormWrapper";
-
 import LoadingPage from "@/components/layout/LoadingPage";
+
+import EditBranchFormWrapper from "./_components/FormWrapper";
 
 export default function EditBranchPage({ params }: { params: { id: string } }) {
   const { id } = params;

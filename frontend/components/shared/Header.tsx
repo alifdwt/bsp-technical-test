@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import { Button } from "../ui/button";
-
 import { Session } from "@/lib/auth/session";
+
+import { Button } from "../ui/button";
 
 const Header = ({ session }: { session: Session | null }) => {
   return (

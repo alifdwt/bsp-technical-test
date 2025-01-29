@@ -5,12 +5,12 @@ import { useRouter } from "nextjs-toploader/app";
 import React, { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
+import { useToast } from "@/hooks/use-toast";
+import { signIn } from "@/lib/auth";
+
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-
-import { useToast } from "@/hooks/use-toast";
-import { signIn } from "@/lib/auth";
 
 const SignInForm = () => {
   const [state, action] = useFormState(signIn, undefined);

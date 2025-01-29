@@ -1,10 +1,10 @@
 import React from "react";
 
-import { buildingTypeColumns } from "./columns";
-
 import DataTable from "@/components/datatable/DataTable";
 import { getBuildingTypes } from "@/lib/api/master-data/building-type";
 import { getSession } from "@/lib/auth/session";
+
+import { buildingTypeColumns } from "./columns";
 
 const BuildingTypeDatatable = async () => {
   const session = await getSession();

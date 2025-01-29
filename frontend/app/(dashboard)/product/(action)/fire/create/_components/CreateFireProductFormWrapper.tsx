@@ -1,9 +1,9 @@
 import React from "react";
 
-import FireProductForm from "../../_components/FireProductForm";
-
 import { getBuildingTypes } from "@/lib/api/master-data/building-type";
 import { getSession } from "@/lib/auth/session";
+
+import FireProductForm from "../../_components/FireProductForm";
 
 const CreateFireProductFormWrapper = async () => {
   const session = await getSession();

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import React, { Suspense } from "react";
 
-import FireProductInvoice from "./_components/FireProductInvoice";
-
 import LoadingPage from "@/components/layout/LoadingPage";
+
+import FireProductInvoice from "./_components/FireProductInvoice";
 
 export const metadata: Metadata = {
   title: "Buat Faktur",

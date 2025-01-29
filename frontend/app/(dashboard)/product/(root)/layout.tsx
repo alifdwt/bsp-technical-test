@@ -1,10 +1,10 @@
 import React from "react";
 
-import ProductTabs from "./_components/ProductTabs";
-
 import PageHeader from "@/components/layout/PageHeader";
 import { products } from "@/constants/product";
 import { getSession } from "@/lib/auth/session";
+
+import ProductTabs from "./_components/ProductTabs";
 
 export default async function ProductRootLayout({
   children,

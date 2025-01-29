@@ -1,10 +1,10 @@
 "use server";
 
-import { BASE_URL } from "..";
-
 import { FireProductFormValues } from "@/lib/validation/product/fire";
 import { IFindAllResponse, IResponse } from "@/types/api-response";
 import { IFireProducts } from "@/types/product/fire";
+
+import { BASE_URL } from "..";
 
 export const getFireProducts = async (token: string) => {
   try {

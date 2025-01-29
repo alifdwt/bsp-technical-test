@@ -50,7 +50,7 @@ export const fireProductColumns: ColumnDef<IFireProducts>[] = [
           return (
             <Link
               href={`/invoice/view?code=${row.original.invoice_code}`}
-              className="text-primary font-semibold hover:underline"
+              className="font-semibold text-primary hover:underline"
             >
               {row.original.invoice_code}
             </Link>

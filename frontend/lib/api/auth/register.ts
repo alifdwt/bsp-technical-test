@@ -1,8 +1,8 @@
 "use server";
 
-import { BASE_URL } from "..";
-
 import { IResponse } from "@/types/api-response";
+
+import { BASE_URL } from "..";
 
 export const signUp = async (formData: FormData) => {
   try {

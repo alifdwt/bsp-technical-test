@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 
-import BuildingTypeDatatable from "./_components/BuildingTypeDatatable";
-
 import DatatableLoading from "@/components/datatable/DatatableLoading";
+
+import BuildingTypeDatatable from "./_components/BuildingTypeDatatable";
 
 export default function BuildingTypePage() {
   return (

@@ -8,6 +8,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { useToast } from "@/hooks/use-toast";
+import { signUp } from "@/lib/api/auth/register";
+import { customRevalidateTag } from "@/lib/revalidate";
+import { SignUpSchema } from "@/lib/validation/auth";
+
 import { Button } from "../ui/button";
 import {
   Form,
@@ -18,11 +23,6 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-
-import { useToast } from "@/hooks/use-toast";
-import { signUp } from "@/lib/api/auth/register";
-import { customRevalidateTag } from "@/lib/revalidate";
-import { SignUpSchema } from "@/lib/validation/auth";
 
 const SignUpForm = () => {
   const { toast } = useToast();

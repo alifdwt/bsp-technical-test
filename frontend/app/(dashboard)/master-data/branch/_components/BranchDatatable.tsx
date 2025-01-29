@@ -1,10 +1,10 @@
 import React from "react";
 
-import { branchColumns } from "./columns";
-
 import DataTable from "@/components/datatable/DataTable";
 import { getBranches } from "@/lib/api/master-data/branch";
 import { getSession } from "@/lib/auth/session";
+
+import { branchColumns } from "./columns";
 
 const BranchDatatable = async () => {
   const session = await getSession();
