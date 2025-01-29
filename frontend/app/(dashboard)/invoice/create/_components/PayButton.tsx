@@ -60,6 +60,15 @@ const PayButton = ({
       total,
     })
       .then((res) => {
+        console.log({
+          fire_product_id: id,
+          period,
+          insured_price: insuredPrice,
+          premium_rate: premiumRate,
+          premium_base: premiumBase,
+          transaction_fee: transactionFee,
+          total,
+        });
         if (res.statusCode === 201) {
           setShowDialog(false);
           customRevalidateTag(tag);

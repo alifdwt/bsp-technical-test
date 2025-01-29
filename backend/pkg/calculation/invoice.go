@@ -1,6 +1,9 @@
 package calculation
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 func CalculatePremiumBase(insuredPrice float32, premiumRate float32, isPermille bool, period int, premiumBase float32) (float32, error) {
 	var calculatedPremiumBase float32
@@ -11,7 +14,8 @@ func CalculatePremiumBase(insuredPrice float32, premiumRate float32, isPermille 
 	}
 
 	if calculatedPremiumBase != premiumBase {
-		return 0, errors.New("calculated premium base is not equal to premium base")
+		errText := fmt.Sprintf("calculated premium base is not equal to premium base, calculated: %f, expected: %f", calculatedPremiumBase, premiumBase)
+		return 0, errors.New(errText)
 	}
 
 	return premiumBase, nil
@@ -21,7 +25,8 @@ func CalculatePremiumTotal(basePrice float32, transactionFee float32, total floa
 	calculatedPremiumTotal := basePrice + transactionFee
 
 	if calculatedPremiumTotal != total {
-		return 0, errors.New("calculated premium total is not equal to total")
+		errText := fmt.Sprintf("calculated premium total is not equal to total, calculated: %f, expected: %f", calculatedPremiumTotal, total)
+		return 0, errors.New(errText)
 	}
 
 	return total, nil
