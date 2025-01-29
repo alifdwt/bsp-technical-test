@@ -11,5 +11,6 @@ export const calculateFireProductPremiumBase = (
     calculatedPremiumBase = insuredPrice * (premiumRate / 100) * period;
   }
 
-  return calculatedPremiumBase;
+  // Bulatkan ke 2 desimal untuk konsistensi dengan backend
+  return Math.round(calculatedPremiumBase * 100) / 100;
 };
