@@ -39,18 +39,22 @@ const SignUpForm = () => {
   });
 
   const [preview, setPreview] = React.useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
 
-  const formData = new FormData();
   const handleSubmit = async (data: z.infer<typeof SignUpSchema>) => {
+    const formData = new FormData();
     formData.append("email", data.email);
     formData.append("password", data.password);
     formData.append("full_name", data.full_name);
     formData.append("username", data.username);
     formData.append("birth_date", data.birth_date);
-    formData.append(
-      "profile_image",
-      new File([data.profile_image], `${data.username}-profile`)
-    );
+
+    // Pastikan file yang dipilih benar-benar dikirim
+    if (selectedFile) {
+      formData.append("profile_image", selectedFile);
+    } else {
+      console.warn("No file selected");
+    }
 
     try {
       await signUp(formData).then((res) => {
@@ -129,7 +133,7 @@ const SignUpForm = () => {
             <FormField
               control={form.control}
               name="profile_image"
-              render={({ field }) => (
+              render={() => (
                 <FormItem className="flex w-full flex-col">
                   <FormLabel className="text-center">Profile Image</FormLabel>
                   <FormControl>
@@ -165,10 +169,10 @@ const SignUpForm = () => {
                         type="file"
                         className="w-36"
                         accept="image/jpeg, image/jpg, image/png, image/webp"
-                        {...field}
                         onChange={(e) => {
                           const file = e.target.files?.[0];
                           if (file) {
+                            setSelectedFile(file);
                             setPreview(URL.createObjectURL(file));
                           }
                         }}

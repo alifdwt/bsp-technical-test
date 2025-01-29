@@ -31,6 +31,7 @@ func NewMyCloudinary() (*MyCloudinary, error) {
 }
 
 func (m *MyCloudinary) UploadToCloudinary(file multipart.File, filePath string) (string, error) {
+	cldFolder := viper.GetString("CLOUDINARY_UPLOAD_FOLDER")
 	if m.Cloud == nil {
 		return "", errors.New("cloudinary connection is not initialized")
 	}
@@ -41,7 +42,7 @@ func (m *MyCloudinary) UploadToCloudinary(file multipart.File, filePath string) 
 	uploadParams := uploader.UploadParams{
 		PublicID:     filePath,
 		ResourceType: "image",
-		Folder:       "Kutipanda",
+		Folder:       cldFolder,
 	}
 
 	result, err := m.Cloud.Upload.Upload(ctx, file, uploadParams)
