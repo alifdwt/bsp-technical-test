@@ -41,6 +41,8 @@ import {
 import { IBuildingTypes } from "@/types/master-data/building-type";
 import { IFireProducts } from "@/types/product/fire";
 
+import CreatePolicyCode from "./CreatePolicyCode";
+
 const constructions = [
   {
     id: 1,
@@ -346,15 +348,14 @@ const FireProductForm = ({
               {form.formState.isSubmitting ? "Menyimpan..." : "Simpan"}
             </Button>
           )}
-          {session.user.role === "admin" && (
-            <Button
-              variant={"default"}
-              className="w-full"
-              disabled={!data?.invoice_code}
-            >
-              Buat Nomor Polis
-            </Button>
-          )}
+          {session.user.role === "admin" &&
+            (data?.policy_code ? (
+              <Button variant={"default"} className="w-full" disabled>
+                Nomor Polis: {data?.policy_code}
+              </Button>
+            ) : (
+              <CreatePolicyCode invoiceCode={data?.invoice_code} />
+            ))}
         </div>
       </form>
     </Form>
