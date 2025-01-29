@@ -116,3 +116,41 @@ func (r *fireProductRepository) SetFireProductInvoiceCode(id int, code string) e
 
 	return nil
 }
+
+func (r *fireProductRepository) SetFireProductPolicyCode(invoiceCode string, code string) error {
+	var fireProduct models.FireProduct
+
+	db := r.db.Model(&fireProduct)
+
+	checkFireProductById := db.Debug().Where("invoice_code = ?", invoiceCode).First(&fireProduct)
+	if checkFireProductById.Error != nil {
+		return checkFireProductById.Error
+	}
+
+	fireProduct.PolicyCode = code
+
+	db = db.Model(&fireProduct).Updates(&fireProduct)
+	if db.Error != nil {
+		return db.Error
+	}
+
+	return nil
+}
+
+func (r *fireProductRepository) UnsetFireProductPolicyCode(policyCode string) error {
+	var fireProduct models.FireProduct
+
+	db := r.db.Model(&fireProduct)
+
+	checkFireProductById := db.Debug().Where("policy_code = ?", policyCode).First(&fireProduct)
+	if checkFireProductById.Error != nil {
+		return checkFireProductById.Error
+	}
+
+	db = db.Model(&fireProduct).Update("policy_code", "")
+	if db.Error != nil {
+		return db.Error
+	}
+
+	return nil
+}

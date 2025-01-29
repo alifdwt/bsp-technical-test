@@ -32,7 +32,7 @@ export default async function Layout({
           <div className="flex items-center gap-2">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
-            <div className="hidden md:block">{breadcrumbs}</div>
+            {breadcrumbs}
           </div>
         </header>
 

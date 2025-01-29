@@ -1,5 +1,6 @@
 import React from "react";
 
+import { adminFireProductColumns } from "./admin-columns";
 import { fireProductColumns } from "./columns";
 
 import DataTable from "@/components/datatable/DataTable";
@@ -19,7 +20,16 @@ const FireProductDatatable = async () => {
 
   const data = fireProducts.data;
 
-  return <DataTable columns={fireProductColumns} data={data} />;
+  return (
+    <DataTable
+      columns={
+        session.user.role === "admin"
+          ? adminFireProductColumns
+          : fireProductColumns
+      }
+      data={data}
+    />
+  );
 };
 
 export default FireProductDatatable;

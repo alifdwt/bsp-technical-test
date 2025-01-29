@@ -6,6 +6,7 @@ import (
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/buildingtype"
 	fireproduct "github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/fire_product"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/invoice"
+	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/requests/policy"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/domain/responses"
 	"github.com/alifdwt/bsp-technical-test-backend/internal/models"
 )
@@ -54,4 +55,9 @@ type InvoiceService interface {
 	GetInvoiceByCodeAndUserID(code string, userID int) (*models.Invoice, error)
 	CreateInvoice(userId int, req *invoice.CreateInvoiceRequest) (*models.Invoice, error)
 	GetNextInvoiceCode() (string, error)
+}
+
+type PolicyService interface {
+	CreatePolicy(userId int, req *policy.CreatePolicyRequest) (*models.Policy, error)
+	DeletePolicyByCode(code string) error
 }

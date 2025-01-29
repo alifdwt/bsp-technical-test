@@ -113,6 +113,13 @@ definitions:
     - total
     - transaction_fee
     type: object
+  policy.CreatePolicyRequest:
+    properties:
+      invoice_code:
+        type: string
+    required:
+    - invoice_code
+    type: object
   responses.ErrorMessage:
     properties:
       error:
@@ -702,6 +709,82 @@ paths:
       summary: Get next invoice code
       tags:
       - Invoice
+  /policy:
+    post:
+      consumes:
+      - application/json
+      description: Create a new policy
+      parameters:
+      - description: Policy data
+        in: body
+        name: policy
+        required: true
+        schema:
+          $ref: '#/definitions/policy.CreatePolicyRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Create a new policy
+      tags:
+      - Policy
+  /policy/{code}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a policy
+      parameters:
+      - description: Policy code
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responses.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.ErrorMessage'
+      security:
+      - BearerAuth: []
+      summary: Delete a policy
+      tags:
+      - Policy
+  /policy/hello:
+    get:
+      description: Return a greeting message to the user
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Greet the user
+      tags:
+      - Policy
   /product/fire:
     get:
       consumes:

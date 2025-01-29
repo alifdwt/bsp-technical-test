@@ -6,6 +6,8 @@ import { getInvoiceByCode } from "@/lib/api/invoice";
 import { getSession } from "@/lib/auth/session";
 
 const GetInvoice = async ({ code }: { code: string }) => {
+  // wait 5 seconds
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
   const session = await getSession();
   if (!session) {
     throw new Error("401 - Unauthorized");

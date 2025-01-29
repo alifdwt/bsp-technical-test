@@ -8,6 +8,7 @@ type Repositories struct {
 	Branch       BranchRepository
 	FireProduct  FireProductRepository
 	Invoice      InvoiceRepository
+	Policy       PolicyRepository
 }
 
 func NewRepositories(db *gorm.DB) *Repositories {
@@ -17,5 +18,6 @@ func NewRepositories(db *gorm.DB) *Repositories {
 		Branch:       NewBranchRepository(db),
 		FireProduct:  NewFireProductRepository(db),
 		Invoice:      NewInvoiceRepository(db),
+		Policy:       NewPolicyRepository(db),
 	}
 }

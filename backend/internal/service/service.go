@@ -15,6 +15,7 @@ type Service struct {
 	Branch       BranchService
 	FireProduct  FireProductService
 	Invoice      InvoiceService
+	Policy       PolicyService
 }
 
 type Deps struct {
@@ -33,5 +34,6 @@ func NewService(deps Deps) *Service {
 		Branch:       NewBranchService(deps.Repository.Branch, deps.Logger),
 		FireProduct:  NewFireProductService(deps.Repository.FireProduct, deps.Logger),
 		Invoice:      NewInvoiceService(deps.Repository.Invoice, deps.Repository.FireProduct, deps.Logger),
+		Policy:       NewPolicyService(deps.Repository.Policy, deps.Logger, deps.Repository.FireProduct),
 	}
 }

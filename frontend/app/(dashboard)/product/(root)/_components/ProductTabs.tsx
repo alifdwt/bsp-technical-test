@@ -7,7 +7,13 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { TProduct } from "@/constants/product";
 
-const ProductTabs = ({ products }: { products: TProduct[] }) => {
+const ProductTabs = ({
+  products,
+  role,
+}: {
+  products: TProduct[];
+  role: "admin" | "customer";
+}) => {
   const pathname = usePathname();
   return (
     <div className="flex max-w-[96vw] justify-between gap-4 overflow-x-auto rounded-xl border bg-white p-4 shadow">
@@ -24,9 +30,11 @@ const ProductTabs = ({ products }: { products: TProduct[] }) => {
         ))}
       </div>
 
-      <Button asChild>
-        <Link href={`${pathname}/create`}>Pengajuan Klaim</Link>
-      </Button>
+      {role !== "admin" && (
+        <Button asChild>
+          <Link href={`${pathname}/create`}>Pengajuan Klaim</Link>
+        </Button>
+      )}
     </div>
   );
 };

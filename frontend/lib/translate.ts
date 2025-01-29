@@ -28,6 +28,10 @@ export const translateRouteToIndonesian = (route: string) => {
       return "Jenis Bangunan";
     case "invoice":
       return "Faktur";
+    case "product":
+      return "Produk";
+    case "fire":
+      return "Kebakaran";
 
     case "add":
       return "Tambah";

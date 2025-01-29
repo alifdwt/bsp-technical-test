@@ -1,7 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { JWTPayload } from "jose";
 import { Loader2Icon } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "nextjs-toploader/app";
 import { useForm } from "react-hook-form";
 
@@ -29,6 +31,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { createFireProduct } from "@/lib/api/product/fire";
+import { Session } from "@/lib/auth/session";
 import { customRevalidateTag } from "@/lib/revalidate";
 import {
   FireProductFormValues,
@@ -36,6 +39,7 @@ import {
   useFireProductSchema,
 } from "@/lib/validation/product/fire";
 import { IBuildingTypes } from "@/types/master-data/building-type";
+import { IFireProducts } from "@/types/product/fire";
 
 const constructions = [
   {
@@ -58,11 +62,15 @@ const constructions = [
 ];
 
 const FireProductForm = ({
-  token,
+  actionType,
+  session,
   buildingTypes,
+  data,
 }: {
-  token: string;
+  actionType: "create" | "detail";
+  session: Session & JWTPayload;
   buildingTypes: IBuildingTypes[];
+  data?: IFireProducts;
 }) => {
   const { toast } = useToast();
   const router = useRouter();
@@ -71,13 +79,13 @@ const FireProductForm = ({
 
   const form = useForm<FireProductFormValues>({
     resolver: zodResolver(schema),
-    defaultValues: fireProductInitValues,
+    defaultValues: data ?? fireProductInitValues,
   });
 
   const submitForm = async (values: FireProductFormValues) => {
     console.log("data", values);
     try {
-      await createFireProduct(values, token).then((res) => {
+      await createFireProduct(values, session.accessToken).then((res) => {
         if (res.statusCode === 201) {
           customRevalidateTag("product/fire");
           toast({
@@ -122,6 +130,7 @@ const FireProductForm = ({
                     <Select
                       onValueChange={(value) => field.onChange(Number(value))}
                       defaultValue={String(field.value)}
+                      disabled={actionType === "detail"}
                     >
                       <FormControl>
                         <SelectTrigger>
@@ -152,6 +161,7 @@ const FireProductForm = ({
                     <Select
                       onValueChange={(value) => field.onChange(Number(value))}
                       defaultValue={String(field.value)}
+                      disabled={actionType === "detail"}
                     >
                       <FormControl>
                         <SelectTrigger>
@@ -178,6 +188,7 @@ const FireProductForm = ({
                 label="Harga Pertanggungan"
                 name="price"
                 placeholder="Rp."
+                disabled={actionType === "detail"}
               />
             </div>
 
@@ -192,6 +203,7 @@ const FireProductForm = ({
                       onValueChange={(value) => field.onChange(Number(value))}
                       defaultValue={String(field.value)}
                       className="flex flex-col space-y-1"
+                      disabled={actionType === "detail"}
                     >
                       {constructions.map((item) => (
                         <FormItem
@@ -226,7 +238,11 @@ const FireProductForm = ({
                 <FormItem>
                   <FormLabel>Alamat Objek Pertanggungan</FormLabel>
                   <FormControl>
-                    <Textarea {...field} rows={5} />
+                    <Textarea
+                      disabled={actionType === "detail"}
+                      {...field}
+                      rows={5}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -241,7 +257,11 @@ const FireProductForm = ({
                 <FormItem>
                   <FormLabel>Provinsi</FormLabel>
                   <FormControl>
-                    <Input placeholder="Provinsi" {...field} />
+                    <Input
+                      placeholder="Provinsi"
+                      disabled={actionType === "detail"}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -257,7 +277,11 @@ const FireProductForm = ({
                   <FormItem>
                     <FormLabel>Kota</FormLabel>
                     <FormControl>
-                      <Input placeholder="Kota" {...field} />
+                      <Input
+                        placeholder="Kota"
+                        disabled={actionType === "detail"}
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -272,7 +296,11 @@ const FireProductForm = ({
                   <FormItem>
                     <FormLabel>Kecamatan</FormLabel>
                     <FormControl>
-                      <Input placeholder="Kecamatan" {...field} />
+                      <Input
+                        placeholder="Kecamatan"
+                        disabled={actionType === "detail"}
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -290,6 +318,7 @@ const FireProductForm = ({
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
+                      disabled={actionType === "detail"}
                     />
                   </FormControl>
                   <FormLabel>Gempa Bumi</FormLabel>
@@ -299,16 +328,34 @@ const FireProductForm = ({
           </div>
         </div>
 
-        <Button
-          type="submit"
-          disabled={form.formState.isSubmitting}
-          className="w-full"
-        >
-          {form.formState.isSubmitting && (
-            <Loader2Icon className="animate-spin" />
+        <div className="flex gap-2">
+          <Button className="w-full" asChild variant={"destructive"}>
+            <Link href="/product/fire">
+              {actionType === "detail" ? "Kembali" : "Batal"}
+            </Link>
+          </Button>
+          {actionType !== "detail" && (
+            <Button
+              type="submit"
+              disabled={form.formState.isSubmitting}
+              className="w-full"
+            >
+              {form.formState.isSubmitting && (
+                <Loader2Icon className="animate-spin" />
+              )}
+              {form.formState.isSubmitting ? "Menyimpan..." : "Simpan"}
+            </Button>
           )}
-          {form.formState.isSubmitting ? "Menyimpan..." : "Simpan"}
-        </Button>
+          {session.user.role === "admin" && (
+            <Button
+              variant={"default"}
+              className="w-full"
+              disabled={!data?.invoice_code}
+            >
+              Buat Nomor Polis
+            </Button>
+          )}
+        </div>
       </form>
     </Form>
   );

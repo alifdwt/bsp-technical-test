@@ -4,12 +4,18 @@ import ProductTabs from "./_components/ProductTabs";
 
 import PageHeader from "@/components/layout/PageHeader";
 import { products } from "@/constants/product";
+import { getSession } from "@/lib/auth/session";
 
-export default function ProductRootLayout({
+export default async function ProductRootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getSession();
+  if (!session) {
+    throw new Error("401 - Unauthorized");
+  }
+
   return (
     <div className="space-y-4">
       <PageHeader
@@ -27,7 +33,7 @@ export default function ProductRootLayout({
         }
       />
 
-      <ProductTabs products={products} />
+      <ProductTabs products={products} role={session.user.role} />
       <div className="max-w-[96vw] rounded-xl border bg-white p-4 shadow">
         {children}
       </div>

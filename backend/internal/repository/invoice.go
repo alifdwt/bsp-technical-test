@@ -53,7 +53,7 @@ func (r *invoiceRepository) GetInvoiceByUserID(userID int) (*[]models.Invoice, e
 
 func (r *invoiceRepository) GetInvoiceByCode(code string) (*models.Invoice, error) {
 	var invoice models.Invoice
-	result := r.db.Where("code = ?", code).Preload("FireProduct").Preload("User").First(&invoice)
+	result := r.db.Where("code = ?", code).Preload("FireProduct.BuildingType").Preload("User").First(&invoice)
 	if result.Error != nil {
 		return nil, result.Error
 	}

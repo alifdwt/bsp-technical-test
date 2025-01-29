@@ -3,10 +3,12 @@
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 
+import PolicyButton from "./PolicyButton";
+
 import { Button } from "@/components/ui/button";
 import { IFireProducts } from "@/types/product/fire";
 
-export const fireProductColumns: ColumnDef<IFireProducts>[] = [
+export const adminFireProductColumns: ColumnDef<IFireProducts>[] = [
   // TODO: policy_number, insured_type,, invoice_number, payment_status, details
   {
     accessorKey: "id",
@@ -16,7 +18,16 @@ export const fireProductColumns: ColumnDef<IFireProducts>[] = [
     accessorKey: "policy_code",
     header: "No. Polis",
     cell: ({ row }) => {
-      return row.original.policy_code || "Belum terbit";
+      if (row.original.invoice_code) {
+        return (
+          <PolicyButton
+            policyCode={row.original.policy_code}
+            invoiceCode={row.original.invoice_code}
+          />
+        );
+      } else {
+        return "Belum terbit";
+      }
     },
   },
   {

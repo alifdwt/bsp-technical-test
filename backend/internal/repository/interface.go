@@ -43,6 +43,8 @@ type FireProductRepository interface {
 	DeleteFireProductById(id int) error
 
 	SetFireProductInvoiceCode(id int, code string) error
+	SetFireProductPolicyCode(invoiceCode string, code string) error
+	UnsetFireProductPolicyCode(policyCode string) error
 }
 
 type InvoiceRepository interface {
@@ -52,4 +54,9 @@ type InvoiceRepository interface {
 	GetInvoiceByUserID(userID int) (*[]models.Invoice, error)
 	GetInvoiceByCodeAndUserID(code string, userID int) (*models.Invoice, error)
 	GetNextInvoiceCode() (string, error)
+}
+
+type PolicyRepository interface {
+	CreatePolicy(req models.Policy) (*models.Policy, error)
+	DeletePolicyByCode(code string) error
 }

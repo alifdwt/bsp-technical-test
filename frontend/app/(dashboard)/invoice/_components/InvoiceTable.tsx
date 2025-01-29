@@ -37,7 +37,7 @@ const InvoiceTable = ({
 }: InvoiceTableProps) => {
   return (
     <Table className="border-2 bg-white">
-      <TableCaption>Ini adalah faktur asuransi kebakaran</TableCaption>
+      <TableCaption></TableCaption>
       <TableHeader>
         <TableRow className="*:p-4">
           <TableHead className="">Premi Terbaik</TableHead>

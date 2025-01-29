@@ -61,3 +61,29 @@ func GetNextInvoiceCode(db *gorm.DB) (string, error) {
 	nextInvoiceCode := fmt.Sprintf("%s%05d", prefix, newNumber)
 	return nextInvoiceCode, nil
 }
+
+func GeneratePolicyCode(db *gorm.DB, prefix string) (string, error) {
+	var lastPolicy models.Policy
+
+	// Ambil policy terakhir berdasarkan nomor policy
+	err := db.Order("id DESC").First(&lastPolicy).Error
+	if err != nil && err != gorm.ErrRecordNotFound {
+		return "", err
+	}
+
+	var lastNumber int
+	if lastPolicy.Code != "" {
+		// Ekstrak angka terakhir dari nomor policy
+		parts := strings.Split(lastPolicy.Code, ".")
+		if len(parts) == 3 {
+			lastNumber, _ = strconv.Atoi(parts[2]) // Ignore error for simplicity
+		}
+	}
+
+	// Tambahkan 1 ke nomor terakhir
+	newNumber := lastNumber + 1
+
+	// Format nomor policy baru
+	newPolicyNumber := fmt.Sprintf("%s%05d", prefix, newNumber)
+	return newPolicyNumber, nil
+}

@@ -64,4 +64,5 @@ func (h *Handler) InitApi(router *fiber.App) {
 	h.initBranchGroup(router)
 	h.initFireProductGroup(router)
 	h.initInvoiceGroup(router)
+	h.initPolicyGroup(router)
 }
